@@ -1,0 +1,21 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    gap:2vh;
+    .title{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 15px;
+    }
+    .cards{
+        padding-left: 15px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-right: 15px;
+        justify-content: space-around;
+        row-gap: 5vh;
+        column-gap: 2vw;
+    }
+}

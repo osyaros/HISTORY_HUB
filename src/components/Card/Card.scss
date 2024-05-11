@@ -1,0 +1,21 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    gap:2vh;
+    .photocard{
+        width: 150px;
+        height: 192px;
+        border-radius: 20px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .cardname{
+        font-size: 10px;
+        font-weight: 400;
+        color: #FFFF;
+    }
+}
