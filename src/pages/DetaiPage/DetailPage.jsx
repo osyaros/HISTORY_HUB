@@ -1,9 +1,43 @@
 import React from 'react'
 import Header from '../../components/Header/Header.jsx';
 import './DetailPage.scss';
-import { useNavigate } from 'react-router';
-const DetailPage = (data) => {
+import { useNavigate,useLocation,useParams } from 'react-router';
+import { useState,useEffect, } from 'react';
+import orig1 from '../../mocks/mock1.js';
+import orig2 from '../../mocks/mock2.js';
+import orig3 from '../../mocks/mock3.js';
+import orig4 from '../../mocks/mock4.js';
+const DetailPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const [data, setData] = useState(null);
+    const category = location.state && location.state.category;
+    const origData = getOriginalData(category);
+
+    useEffect(() => {
+        setData(location.state && location.state.datacard[1]);
+    }, [location]);
+
+    function getOriginalData(category) {
+        switch (category) {
+            case "Школа верных":
+                return orig4;
+            case "Личности":
+                return orig1;
+            case "Экспонаты":
+                return orig2;
+            case "События":
+                return orig3;
+            default:
+                return null;
+        }
+    }
+    const params = useParams();
+    const current = params.index;
+    const next = (Number(current) + 1)%origData.length;
+    const datacard = [next, origData[next]]
+
+    console.log(category)
     return (
       <div className='content'>
         <Header />
@@ -16,20 +50,25 @@ const DetailPage = (data) => {
                 </div>
             </button>
             <div className='name'>
-                 <span>{data.name}Нансеновский паспорт</span>
+                 <span>{data ? data.name : 'Loading...'}</span>
             </div>
         </div>
-        <div className='photo'>
-            <img src={data.photo} alt='photo'/>
-        </div>
+        { data?.image?.length > 1 ? (
+            <div className='photo'>
+                <img src={data.image} alt='photo'/>
+            </div>
+        ) : (
+            <div></div>
+        )}
         <div className='descr'>
-            <p>{data.description}   Международный документ, удостоверяющий личность беженца. Введен решением конференции представителей правительств, Женеве 3-5 июля 1922 года. Разработан норвежским ученым, общественным и политическим деятелем Фритьофом Нансеном, занимавшим должность Вер- ховного комиссара Лиги Наций по делам русских беженцев, при активном участии русских зарубежных организаций и юристов-эмигрантов. Документ подлежал ежегодному возобновлению, при пересечении границы не гарантировал беженцу права возвращения в выдавшую его страну и утрачивал силу «если обладатель его вступит, в какой бы то ни было момент, на территорию России». Составлялся на двух языках - выдававшей паспорт страны и французском.</p>
+            <p>{data ? data.description : 'Loading...'}</p>
         </div>
         <div className='btn_next'>
-            <button>
-                Следующий экспонат
+            <button onClick={()=> navigate(`/detailpage/${next}`, {state:{category:category, datacard:datacard}})}>
+                Следующая карточка
             </button>
         </div>
+        <br></br>
     </div>
     )
 };
