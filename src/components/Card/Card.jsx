@@ -1,13 +1,13 @@
 import React from 'react'
 import './Card.scss'
-const Card = () =>{
+const Card = ({data}, key) =>{
   return (
     <div className='card'>
         <div className='photocard'>   
-            <img src="/map.png" alt='photo'/>
+            <img src={data[1].image} alt='photo'/>
         </div>
         <div className='cardname'>
-            <span> Нансеновский паспорт</span>
+            <span>{data[1].name}</span>
         </div>
     </div>
   )

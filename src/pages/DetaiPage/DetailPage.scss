@@ -10,6 +10,8 @@
         gap:2vw;
         .arrow{
             justify-self: start;
+            width: 20px;
+            height: 20px;
         }
         .name{
            font-weight: 600;
@@ -28,6 +30,7 @@
         font-weight: 400;
         padding-left: 15px;
         padding-right: 15px;
+        color: #FFFF;
     }
     .btn_next{
         align-self: center;
@@ -44,5 +47,6 @@
         font-weight: 400;
         line-height: normal;
         width: 60vw;
+
     }
 }

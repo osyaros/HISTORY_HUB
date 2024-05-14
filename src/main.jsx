@@ -11,13 +11,26 @@ const routes = createBrowserRouter([
       element: <MainPage />
   },
   {
-    path: '/detailpage',
+    path: '/detailpage/:index',
     element: <DetailPage />
   },
   {
-    path: '/category',
+    path: '/persons',
     element: <CategoryPage />
-  }
+  },
+  {
+    path: '/school_of_faithful',
+    element: <CategoryPage />,
+    
+  },
+  {
+    path: '/sights',
+    element: <CategoryPage />
+  },
+  {
+    path: '/events',
+    element: <CategoryPage />
+  },
 
   
   
